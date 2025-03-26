@@ -14,14 +14,15 @@
 o|.............|o
 
 '''
-from maqueen import *
+from maprincess import *
 from microbit import *
 import utime
 
 # Constantes
 WHITE = 0
 BLACK = 1
-
+MOTOR_FORWARD = 0
+MOTOR_BACKWARD = 1
 # Variable globale
 Init = True
 
@@ -67,4 +68,7 @@ while True:
         Init = False
        
     print(line_sensor_all())
-    followLine(speed, speed_slow)
+    if line_sensor(LineSensor.R2)==WHITE :
+        motor_run(Motor.ALL, 70, MOTOR_FORWARD)
+    else:
+        motor_run(Motor.ALL, 0, MOTOR_FORWARD)

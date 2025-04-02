@@ -56,6 +56,11 @@ def followLine(speed:int, speed_slow:int):
         motor_run(Motor.RIGHT, speed )
 
     utime.sleep_ms(50)
+def tourne_d(speed):
+    sleep(100)
+    motor_run(Motor.LEFT, speed, MOTOR_FORWARD)
+    motor_run(Motor.RIGHT, speed_slow, MOTOR_BACKWARD)
+    sleep(100)
 
 while True:
     if Init:
@@ -72,3 +77,9 @@ while True:
         motor_run(Motor.ALL, 70, MOTOR_FORWARD)
     else:
         motor_run(Motor.ALL, 0, MOTOR_FORWARD)
+    if line_sensor(LineSensor.L2)==WHITE :
+        sleep(10)
+        tourne_d(speed)
+        sleep(10)
+    else:
+        None

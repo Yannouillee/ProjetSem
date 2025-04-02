@@ -24,6 +24,7 @@ BLACK = 1
 MOTOR_FORWARD = 0
 MOTOR_BACKWARD = 1
 V1 = True
+V2 = True
 # Variable globale
 Init = True
 
@@ -99,12 +100,12 @@ while True:
     print(line_sensor_all())
     if line_sensor(LineSensor.M)== WHITE and V1 == True:
         motor_run(Motor.ALL, speed_slow, MOTOR_FORWARD)
-    elif line_sensor(LineSensor.M)== BLACK :
+    elif line_sensor(LineSensor.M)== BLACK and V2 == True :
         motor_run(Motor.RIGHT, speed_slow, MOTOR_BACKWARD)
         motor_run(Motor.LEFT, speed_slow, MOTOR_BACKWARD)
         V1 = False
         sleep(100)
-        break
+        V2 = False
 #     if line_sensor(LineSensor.R2)==BLACK :
 #         motor_run(Motor.ALL, 70, MOTOR_FORWARD)
 #     else:

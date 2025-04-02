@@ -19,10 +19,11 @@ from microbit import *
 import utime
 
 # Constantes
-WHITE = 1
-BLACK = 0
+WHITE = 0
+BLACK = 1
 MOTOR_FORWARD = 0
 MOTOR_BACKWARD = 1
+V1 = True
 # Variable globale
 Init = True
 
@@ -65,30 +66,45 @@ def tourne_d(speed):
     
 def tourne_g(speed):
     sleep(100)
-    motor_run(Motor.RIHGT, speed, MOTOR_FORWARD)
+    motor_run(Motor.RIGHT, speed, MOTOR_FORWARD)
     motor_run(Motor.LEFT, speed_slow, MOTOR_BACKWARD)
     sleep(100)
     
-def cr_d:
+def cr_d(speed_slow):
     sleep(100)
-    motor_run(Motor.RIHGT, speed_slow, MOTOR_BACKWARD)
+    motor_run(Motor.RIGHT, speed_slow, MOTOR_BACKWARD)
     motor_run(Motor.LEFT, speed_slow, MOTOR_BACKWARD)
     sleep(100)
     tourne_d(speed)
     sleep(100)
     
+def cr_g(speed_slow):
+    sleep(100)
+    motor_run(Motor.RIGHT, speed_slow, MOTOR_BACKWARD)
+    motor_run(Motor.LEFT, speed_slow, MOTOR_BACKWARD)
+    sleep(100)
+    tourne_g(speed)
+    sleep(100)
+
 while True:
     if Init:
         # Vitesse maximale des moteurs (min:0, max:255)
         speed:int = 70   #70
-        speed_slow:int = 15 #15
+        speed_slow:int = 25 #15
 
         display.show("2")
         utime.sleep_ms(3000)
         Init = False
        
-    print(line_sensor_all()
-    if line_sensor(LineSensor.M)==BLACK :
+    print(line_sensor_all())
+    if line_sensor(LineSensor.M)== WHITE and V1 == True:
+        motor_run(Motor.ALL, speed_slow, MOTOR_FORWARD)
+    elif line_sensor(LineSensor.M)== BLACK :
+        motor_run(Motor.RIGHT, speed_slow, MOTOR_BACKWARD)
+        motor_run(Motor.LEFT, speed_slow, MOTOR_BACKWARD)
+        V1 = False
+        sleep(100)
+        break
 #     if line_sensor(LineSensor.R2)==BLACK :
 #         motor_run(Motor.ALL, 70, MOTOR_FORWARD)
 #     else:

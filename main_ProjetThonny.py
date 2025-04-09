@@ -84,13 +84,13 @@ def cr_d(speed_slow):
     tourne_d(speed)
     sleep(100)
     if d == "N":
-        d == "E"
+        d = "E"
     elif d == "E":
-        d == "S"
+        d = "S"
     elif d == "S":
-        d == "O"
+        d = "O"
     elif d == "O":
-        d == "N"
+        d = "N"
         
 def cr_g(speed_slow):
     sleep(100)
@@ -100,13 +100,13 @@ def cr_g(speed_slow):
     tourne_g(speed)
     sleep(100)
     if d == "N":
-        d == "O"
+        d = "O"
     elif d == "O":
-        d == "S"
+        d = "S"
     elif d == "S":
-        d == "E"
+        d = "E"
     elif d == "E":
-        d == "N"
+        d = "N"
         
 while True:
     if Init:
@@ -137,6 +137,7 @@ while True:
             y += 1
         elif d == "S":
             x += 1
+        print("x:", x, "y:"; y)
 
 #     if line_sensor(LineSensor.R2)==BLACK :
 #         motor_run(Motor.ALL, 70, MOTOR_FORWARD)

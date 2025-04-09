@@ -29,7 +29,7 @@ led_rgb(rgb(255,255,255))
 Init = True
 lc = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17] #liste colone
 ll = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23] #liste ligne
-d = "L" # direction (ligne (L) / colone (C))
+d = "E" # direction (E/O/N/S)
 x = 22
 y = 16
 
@@ -83,10 +83,14 @@ def cr_d(speed_slow):
     sleep(100)
     tourne_d(speed)
     sleep(100)
-    if d == "L":
-        d == "C"
-    else:
-        d == "L"
+    if d == "N":
+        d == "E"
+    elif d == "E":
+        d == "S"
+    elif d == "S":
+        d == "O"
+    elif d == "O":
+        d == "N"
         
 def cr_g(speed_slow):
     sleep(100)
@@ -95,10 +99,14 @@ def cr_g(speed_slow):
     sleep(100)
     tourne_g(speed)
     sleep(100)
-    if d == "L":
-        d == "C"
-    else:
-        d == "L"
+    if d == "N":
+        d == "O"
+    elif d == "O":
+        d == "S"
+    elif d == "S":
+        d == "E"
+    elif d == "E":
+        d == "N"
         
 while True:
     if Init:
@@ -121,10 +129,14 @@ while True:
             V2 = False
     if 40 < line_sensor_data(LineSensor.R1) < 210:
     #def gauche pu droite change le d pour connaitre l'orientation
-        if d == "L":
+        if d == "N":
             x -= 1
-        elif d == "C":
+        elif d == "E":
             y -= 1
+        elif d == "O":
+            y += 1
+        elif d == "S":
+            x += 1
 
 #     if line_sensor(LineSensor.R2)==BLACK :
 #         motor_run(Motor.ALL, 70, MOTOR_FORWARD)

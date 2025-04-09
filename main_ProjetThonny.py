@@ -111,7 +111,12 @@ while True:
         motor_run(Motor.LEFT, speed_slow, MOTOR_BACKWARD)
         sleep(100)
         V2 = False
-
+    if line_sensor_data(LineSensor.R1)== couleur:
+    #def gauche pu droite change le d pour connaitre l'orientation
+    if d == L:
+        ll -= 1
+    elif d == C:
+        lc -= 1
 
 #     if line_sensor(LineSensor.R2)==BLACK :
 #         motor_run(Motor.ALL, 70, MOTOR_FORWARD)

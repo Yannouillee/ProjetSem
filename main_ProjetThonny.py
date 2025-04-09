@@ -105,10 +105,10 @@ while True:
     print(line_sensor_all())
     if line_sensor(LineSensor.M)== WHITE and V1 == True:
         motor_run(Motor.ALL, speed_slow, MOTOR_FORWARD)
+        V1 = True
     elif line_sensor(LineSensor.M)== BLACK and V2 == True :
         motor_run(Motor.RIGHT, speed_slow, MOTOR_BACKWARD)
         motor_run(Motor.LEFT, speed_slow, MOTOR_BACKWARD)
-        V1 = False
         sleep(100)
         V2 = False
 

@@ -106,6 +106,8 @@ while True:
         V1 = False
         sleep(100)
         V2 = False
+
+
 #     if line_sensor(LineSensor.R2)==BLACK :
 #         motor_run(Motor.ALL, 70, MOTOR_FORWARD)
 #     else:

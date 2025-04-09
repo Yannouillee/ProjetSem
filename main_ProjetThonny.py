@@ -1,4 +1,3 @@
-
 ''' Auteurs   : Yannaël Métral et Anton Broggini
     Contact     : yannael.mtrl@eduge.ch et anton.brggn@eduge.ch
     License     : collégiens
@@ -25,13 +24,14 @@ MOTOR_FORWARD = 0
 MOTOR_BACKWARD = 1
 V1 = True
 V2 = True
+led_rgb(rgb(255,255,255))
 # Variable globale
 Init = True
-lc = [1;2;3;4;5;6;7;8;9;10;11;12;13;14;15;16;17] #liste colone
-ll = [1;2;3;4;5;6;7;8;9;10;11;12;13;14;15;16;17;18;19;20;21;22;23] #liste ligne
-pc = 15 #position colone
-pl = 21 #position ligne
-d = L # direction (ligne (L) / colone (C))
+lc = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17] #liste colone
+ll = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23] #liste ligne
+d = "L" # direction (ligne (L) / colone (C))
+x = 22
+y = 16
 
 def followLine(speed:int, speed_slow:int):
     ''' Fonction qui teste si on est sur la bande noire et commande les moteurs droite et gauche.
@@ -83,7 +83,11 @@ def cr_d(speed_slow):
     sleep(100)
     tourne_d(speed)
     sleep(100)
-    
+    if d == "L":
+        d == "C"
+    else:
+        d == "L"
+        
 def cr_g(speed_slow):
     sleep(100)
     motor_run(Motor.RIGHT, speed_slow, MOTOR_BACKWARD)
@@ -91,7 +95,11 @@ def cr_g(speed_slow):
     sleep(100)
     tourne_g(speed)
     sleep(100)
-
+    if d == "L":
+        d == "C"
+    else:
+        d == "L"
+        
 while True:
     if Init:
         # Vitesse maximale des moteurs (min:0, max:255)
@@ -106,17 +114,17 @@ while True:
     if line_sensor(LineSensor.M)== WHITE and V1 == True:
         motor_run(Motor.ALL, speed_slow, MOTOR_FORWARD)
         V1 = True
-    elif line_sensor(LineSensor.M)== BLACK and V2 == True :
-        motor_run(Motor.RIGHT, speed_slow, MOTOR_BACKWARD)
-        motor_run(Motor.LEFT, speed_slow, MOTOR_BACKWARD)
-        sleep(100)
-        V2 = False
-    if line_sensor_data(LineSensor.R1)== couleur:
+        if line_sensor(LineSensor.M)== BLACK and V2 == True :
+            motor_run(Motor.RIGHT, speed_slow, MOTOR_BACKWARD)
+            motor_run(Motor.LEFT, speed_slow, MOTOR_BACKWARD)
+            sleep(100)
+            V2 = False
+    if 40 < line_sensor_data(LineSensor.R1) < 210:
     #def gauche pu droite change le d pour connaitre l'orientation
-    if d == L:
-        ll -= 1
-    elif d == C:
-        lc -= 1
+        if d == "L":
+            x -= 1
+        elif d == "C":
+            y -= 1
 
 #     if line_sensor(LineSensor.R2)==BLACK :
 #         motor_run(Motor.ALL, 70, MOTOR_FORWARD)

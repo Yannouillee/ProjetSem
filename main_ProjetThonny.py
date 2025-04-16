@@ -74,12 +74,13 @@ def tourne_g(speed):
     sleep(100)
     motor_run(Motor.RIGHT, speed, MOTOR_FORWARD)
     motor_run(Motor.LEFT, speed_slow, MOTOR_BACKWARD)
-    sleep(100)
+    sleep(720)
 
 def cr_d(speed_slow):
-    motor_run(Motor.RIGHT, speed_slow, MOTOR_BACKWARD)
-    motor_run(Motor.LEFT, speed_slow, MOTOR_BACKWARD)
-    sleep(1000)
+    sleep(100)
+    motor_run(Motor.RIGHT, 15, MOTOR_BACKWARD)
+    motor_run(Motor.LEFT, 15, MOTOR_BACKWARD)
+    sleep(50)
     tourne_d(speed)
     sleep(100)
 
@@ -121,9 +122,9 @@ while True:
     print(line_sensor_all())
     if line_sensor_data(LineSensor.M) > 50 and line_sensor_data(LineSensor.R2) < 20: #and V1 == True:
         motor_run(Motor.ALL, 50, MOTOR_FORWARD)
-    elif line_sensor_data(LineSensor.M) < 50:
+    elif line_sensor_data(LineSensor.M) < 50 :
         motor_run(Motor.ALL, 0, MOTOR_FORWARD)
-        cr_d(speed_slow)
+        cr_g(speed_slow)
     if 40 < line_sensor_data(LineSensor.R1) < 210:
     #def gauche pu droite change le d pour connaitre l'orientation
         if d == "N":

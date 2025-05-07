@@ -27,8 +27,8 @@ V2 = True
 led_rgb(rgb(255,255,255))
 # Variable globale
 Init = True
-lc = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17] #liste colone
-ll = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23] #liste ligne
+c = [] #liste colone
+l = [] #liste ligne
 d = "E" # direction (E/O/N/S)
 x = 22
 y = 16
@@ -40,22 +40,22 @@ def followLine(speed:int, speed_slow:int):
           speed (int) : vitesse donnée au(x) moteur(s). Pour tourner, le moteur le moins rapide sera speed-35
     '''
     # On teste si les capteurs infrarouge frontaux L1 et R1 détecte la bande noire
-    if line_sensor(LineSensor.M)==BLACK:
+    if 40 < line_sensor_data(LineSensor.M) < 210:
         # On est sur la bande noire, on continue tout droit.
         print("On est sur la bande noir")
         display.show(Image.HAPPY)
         motor_run(Motor.LEFT, speed)
         motor_run(Motor.RIGHT, speed)
 
-    elif line_sensor(LineSensor.L1)==WHITE and line_sensor(LineSensor.R1)==BLACK:        
+    elif line_sensor(LineSensor.L1)==WHITE and 40 < line_sensor_data(LineSensor.R1) < 210:        
         # On est sorti à gauche, il faut revenir un peu sur la droite.
         print("Trop à gauche !")
         display.show("G")
         motor_run(Motor.LEFT, speed)
         motor_run(Motor.RIGHT, speed_slow)
 
-    elif line_sensor(LineSensor.L1)==BLACK and line_sensor(LineSensor.R1)==WHITE:
-        # On est sorti à droite, il faut revenir un peu sur la gauche.
+    elif 40 < line_sensor_data(LineSensor.L1) < 210 and line_sensor(LineSensor.R1)==WHITE:
+        # On est sorti à droite, il faut revenir 40 < line_sensor_data(LineSensor.R1) < 210un peu sur la gauche.
         # Le moteur gauche doit tourner moins vite que le moteur droit
         print("Trop à droite !")
         display.show("D")
@@ -84,14 +84,14 @@ def cr_d(speed_slow):
     tourne_d(speed)
     sleep(100)
 
-#     if d == "N":
-#         d = "E"
-#     elif d == "E":
-#         d = "S"
-#     elif d == "S":
-#         d = "O"
-#     elif d == "O":
-#         d = "N"
+    if d == "N":
+        d = "E"
+    elif d == "E":
+        d = "S"
+    elif d == "S":
+        d = "O"
+    elif d == "O":
+        d = "N"
         
 def cr_g(speed_slow):
     motor_run(Motor.RIGHT, 15, MOTOR_BACKWARD)
@@ -99,14 +99,14 @@ def cr_g(speed_slow):
     sleep(50)
     tourne_g(speed)
     sleep(100)
-#     if d == "N":
-#         d = "O"
-#     elif d == "O":
-#         d = "S"
-#     elif d == "S":
-#         d = "E"
-#     elif d == "E":
-#         d = "N"
+    if d == "N":
+        d = "O"
+    elif d == "O":
+        d = "S"
+    elif d == "S":
+        d = "E"
+    elif d == "E":
+        d = "N"
         
 while True:
     if Init:
@@ -117,26 +117,43 @@ while True:
         display.show("2")
         utime.sleep_ms(3000)
         Init = False
-       
-    print(line_sensor_all())
-    if line_sensor_data(LineSensor.M) > 50 and line_sensor_data(LineSensor.R2) < 20 and line_sensor_data(LineSensor.R1) >50 : #and V1 == True:
-        motor_run(Motor.ALL, 50, MOTOR_FORWARD)
-    elif line_sensor_data(LineSensor.M) < 50:
-        cr_g(speed_slow)
+#     if line_sensor(LineSensor.R2) == BLACK and line_sensor(LineSensor.L1) == WHITE:
+#         motor_run(Motor.ALL, 30, MOTOR_FORWARD)
+#     else:
+#         motor_run(Motor.ALL, 0, MOTOR_FORWARD)
+#     if line_sensor(LineSensor.L1) == BLACK:
+#         motor_run(Motor.RIGHT, 40, MOTOR_FORWARD)
+#     else:
+#         motor_run(Motor.ALL, 0, MOTOR_FORWARD)
+#     if line_sensor(LineSensor.R2) == WHITE:
+#         motor_run(Motor.LEFT, 30, MOTOR_FORWARD)
+
+    elif line_sensor(LineSensor.L2) == BLACK:
+        motor_run(Motor.LEFT, 40, MOTOR_FORWARD)
     else:
-        motor_run(Motor.ALL, 50, MOTOR_FORWARD)
+        motor_run(Motor.ALL, 20, MOTOR_FORWARD)
+#     print(line_sensor_all())
+#     if line_sensor_data(LineSensor.M) > 50 and line_sensor_data(LineSensor.R2) < 20 and line_sensor_data(LineSensor.R1) >50 : #and V1 == True:
+#         motor_run(Motor.ALL, 50, MOTOR_FORWARD)
+#     elif line_sensor_data(LineSensor.M) < 50:
+#         cr_g(speed_slow)
+#     else:
+#         motor_run(Motor.ALL, 50, MOTOR_FORWARD)
+
+
     if 40 < line_sensor_data(LineSensor.R1) < 210:
     #def gauche pu droite change le d pour connaitre l'orientation
+        sleep(200)
         if d == "N":
-            x -= 1
+            x -= 1    
         elif d == "E":
             y -= 1
         elif d == "O":
             y += 1
         elif d == "S":
             x += 1
-        #print("x:", x, "y:"; y)
-
+        print("x:", x, "y:", y)
+        
 #     if line_sensor(LineSensor.R2)==BLACK :
 #         motor_run(Motor.ALL, 70, MOTOR_FORWARD)
 #     else:

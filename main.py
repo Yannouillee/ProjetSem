@@ -23,7 +23,7 @@ BLACK = 1
 MOTOR_FORWARD = 0
 MOTOR_BACKWARD = 1
 V1 = True
-V2 = True
+V2 = False
 led_rgb(rgb(255,255,255))
 # Variable globale
 Init = True
@@ -128,10 +128,12 @@ while True:
 #     if line_sensor(LineSensor.R2) == WHITE:
 #         motor_run(Motor.LEFT, 30, MOTOR_FORWARD)
 
-    elif line_sensor(LineSensor.L2) == BLACK:
+    if line_sensor(LineSensor.R2) == BLACK:
         motor_run(Motor.LEFT, 40, MOTOR_FORWARD)
-    else:
-        motor_run(Motor.ALL, 20, MOTOR_FORWARD)
+    elif line_sensor(LineSensor.L2) == BLACK:
+        motor_run(Motor.RIGHT, 40, MOTOR_FORWARD)
+#     else:
+#         motor_run(Motor.ALL, 20, MOTOR_FORWARD)
 #     print(line_sensor_all())
 #     if line_sensor_data(LineSensor.M) > 50 and line_sensor_data(LineSensor.R2) < 20 and line_sensor_data(LineSensor.R1) >50 : #and V1 == True:
 #         motor_run(Motor.ALL, 50, MOTOR_FORWARD)

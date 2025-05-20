@@ -27,6 +27,7 @@ MOTOR_BACKWARD = 1  #arrière
 BLACK = 1   #détection line_sensor noir
 WHITE = 0   #détection line_sensor blanc
 music.set_tempo(ticks=4, bpm = 124) #4 temps par mesure, 124 battements par minute
+compteur0 = running_time()
 
 #Instruction
 led_rgb(rgb(255,255,255))   #lumière blanche pour mieux détecter les lignes
@@ -85,5 +86,9 @@ while True:
                 Mur_Trouve = True
                 print("fin")
                 motor_stop(Motor.ALL)
+                compteur1 = str(running_time()-compteur0)
                 led_rgb(rgb(0,128,0))
+    print("compteur1")
+    display.show("compteur1")
+    sleep(3000)
     music.play(FINAL_COUNTDOWN)

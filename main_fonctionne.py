@@ -2,8 +2,8 @@
     Contact     : yannael.mtrl@eduge.ch et anton.brggn@eduge.ch
     License     : collégiens
     Librairie   : https://github.com/GBSL-Informatik/maqueen-plus-v2-mpy/tree/main
-    Date        : 18 mai 2025
-    Version     : 2
+    Date        : 20 mai 2025
+    Version     : 2.1
     Description :
 
    /''''^''''\
@@ -17,29 +17,29 @@ o|.............|o
 #Librairies
 from maprincess import *
 from microbit import *
-import utime
-
 #Constantes
 MOTOR_FORWARD = 0   #avant
 MOTOR_BACKWARD = 1  #arrière
 BLACK = 1   #détection line_sensor noir
 WHITE = 0   #détection line_sensor blanc
+
+#Instruction
 led_rgb(rgb(255,255,255))   #lumière blanche pour mieux détecter les lignes
 
-#définitions
+#Définitions
 def avancer():    #fonction pour avancer
     motor_run(Motor.ALL, 40, MOTOR_FORWARD)
     sleep(100)
     motor_stop(Motor.ALL)
    
 def tourne_d():   #fonction pour tourner à droite
-    motor_run(Motor.LEFT, 110, MOTOR_FORWARD)
+    motor_run(Motor.LEFT, 90, MOTOR_FORWARD)
     motor_run(Motor.RIGHT, 110, MOTOR_BACKWARD)
     sleep(220)
     motor_stop(Motor.ALL)
    
 def tourne_g():   #fonction pour tourner à gauche
-    motor_run(Motor.RIGHT, 110, MOTOR_FORWARD)
+    motor_run(Motor.RIGHT, 90, MOTOR_FORWARD)
     motor_run(Motor.LEFT, 110, MOTOR_BACKWARD)
     sleep(220)
     motor_stop(Motor.ALL)

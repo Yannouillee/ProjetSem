@@ -28,10 +28,12 @@ WHITE = 0   #détection line_sensor blanc
 #Variables
 userId = 1  #numéro de l'utilisateur
 depart = False #booléen pour executer au bon moment le départ
+Boucle = True
+compteur = 0
 
 #Définitions
 def avancer():    #fonction pour avancer
-    motor_run(Motor.ALL, 40, MOTOR_FORWARD)
+    motor_run(Motor.ALL, 30, MOTOR_FORWARD)
     sleep(100)
     motor_stop(Motor.ALL)
    
@@ -48,20 +50,22 @@ def tourne_g():   #fonction pour tourner à gauche
     motor_stop(Motor.ALL)
 
 #Execution du programme
-while True:
+while Boucle:
     if not depart:  #en attente du message pour partir 
         led_rgb(rgb(255,0,0))  #lumière rouge
         m = receive_msg(userId)
         if m and m.payload == [120]:
             print("Lesgoooo")
             depart = True
+            compteur = running_time()  #compteur début
             led_rgb(rgb(0,128,0))
-    else:
+            sleep(100)
+    elif Boucle:
         led_rgb(rgb(255,255,255))  #lumière blanche pour mieux détecter les lignes
         # 3 sorties possibles: 1)mur noir devant = tourner à gauche
         #                      2)rien devant et mur à droite = avancer tout droit
         #                      3)rien devant et blanc à droite = tourner à droite
-        compteur = running_time() #compteur début
+        
         if line_sensor(LineSensor.M) == BLACK:
             tourne_d()
             avancer()
@@ -70,7 +74,9 @@ while True:
         elif line_sensor(LineSensor.L2) == WHITE:
             tourne_g()
             avancer()
-    if button_a.was_pressed(): 
-        display.show(compteur)  #affiche le temps du parcours à la fin 
     if button_b.was_pressed():
         motor_stop(Motor.ALL) #arrête la bête
+        Boucle = False
+    if button_a.was_pressed(): 
+        display.show((running_time() - compteur)  // 1000)  #affiche le temps du parcours à la fin
+        print((running_time() - compteur) // 1000)

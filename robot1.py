@@ -88,7 +88,7 @@ while True:
                 motor_stop(Motor.ALL)
                 compteur1 = str(running_time()-compteur0)
                 led_rgb(rgb(0,128,0))
-    compteur11=compteur1//1000
+    compteur11=int(compteur1)//1000
     print(compteur11)
     display.show(compteur11)
     sleep(1000)

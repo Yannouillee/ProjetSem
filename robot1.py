@@ -3,8 +3,8 @@
     License     : collégiens
     Librairie   : https://github.com/GBSL-Informatik/maqueen-plus-v2-mpy/tree/main
     Date        : 20 mai 2025
-    Version     : 2
-    Description : Robot qui fait en premier le parcours, puis qui envoie dès la détection d'un objet avec l'utrason un message au deuxième robot pour partir
+    Version     : 3
+    Description : Robot qui fait en premier le parcours, puis qui envoie dès la détection d'un objet avec l'utrason un message au deuxième robot pour partir, finalement joue la musique 
 
    /''''^''''\
   /  L1 M R1  \
@@ -60,6 +60,7 @@ FINAL_COUNTDOWN = ["F#2:1", "C#3:1", "F#3:4", "C#5:1", "B4:1", "C#5:4", "F#4:4",
                    "C#5:2", "B4:4", "B1:1", "F#2:1", "B2:4", "D5:1", "C#5:1", "D5:4", "F#4:4",
                    "E2:1", "B2:1", "G#3:4", "B4:1", "A4:1", "B4:2", "A4:2", "G#4:2", "B4:2", "A4:1", "A3:1", "C#4:1", "E4:1", "A3:1", "E3:1", "G#4:1", "A4:1", "B4:1", "B2:1", "E3:1", "G#3:1", "B3:1", "G#3:1", "A4:1", "B4:1",
                    "C#5:2", "B4:2", "A4:2", "G#4:2", "F#4:1", "F#3:1", "F#4:1", "F#3:1", "D5:1", "F#4:1", "D5:1", "F#4:1", "C#5:1", "G#4:1", "F4:1", "C#4:1", "G#3:1", "F3:1", "C#3:1", "G#2:1", "F2:1", "C#2:2"]
+
 #Execution du programme
 while True:
     while not Mur_Trouve: # pour sortir de la boucle à la fin du labyrinthe
@@ -84,4 +85,4 @@ while True:
                 print("fin")
                 motor_stop(Motor.ALL)
                 led_rgb(rgb(0,128,0))
-        music.play(FINAL_COUNTDOWN)
+    music.play(FINAL_COUNTDOWN)

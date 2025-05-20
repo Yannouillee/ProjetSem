@@ -27,6 +27,7 @@ MOTOR_BACKWARD = 1  #arrière
 BLACK = 1   #détection line_sensor noir
 WHITE = 0   #détection line_sensor blanc
 music.set_tempo(ticks=4, bpm = 124) #4 temps par mesure, 124 battements par minute
+
 #Instruction
 led_rgb(rgb(255,255,255))   #lumière blanche pour mieux détecter les lignes
 

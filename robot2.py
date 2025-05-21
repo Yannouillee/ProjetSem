@@ -33,7 +33,7 @@ compteur = 0
 
 #Définitions
 def avancer():    #fonction pour avancer
-    motor_run(Motor.ALL, 30, MOTOR_FORWARD)
+    motor_run(Motor.ALL, 40, MOTOR_FORWARD)
     sleep(100)
     motor_stop(Motor.ALL)
    
